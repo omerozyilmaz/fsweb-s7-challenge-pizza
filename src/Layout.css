@@ -1,0 +1,17 @@
+
+/* header Css*/
+.headerNav {
+    background-color: #CE2829;
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.headerNav .navbar-brand {
+    color: white;
+    font-family: "Satisfy" ;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: xx-large;
+}
