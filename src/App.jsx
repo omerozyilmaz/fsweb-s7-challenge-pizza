@@ -1,12 +1,7 @@
-/*import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import workintech from '/workintech.svg'*/
 import Header from './layout/Header.jsx'
 import MainPage from './pages/MainPage.jsx'
 import OrderConfirmation from './pages/OrderConfirmation.jsx'
 import OrderForm from './pages/OrderForm.jsx'
-
-
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 function App() {
