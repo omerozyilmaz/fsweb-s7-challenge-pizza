@@ -6,14 +6,11 @@ export default function PizzaPrice(props) {
     });
 
     return (
-        <nav >
-            <ul className="hight-price-nav-List-a">
-                <li>{price.aciPizzaPrice}</li>
-                <ul className="hight-price-nav-List-b">
-                <li><a>4.9</a></li>
-                <li><a>"(200)"</a></li>
-                </ul>
-            </ul>
-        </nav>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div>{price.aciPizzaPrice}₺</div>
+             <div>
+                 4.9 <span style={{ marginLeft: '10px' }}>(200)</span>
+            </div>
+        </div>
 )
 }

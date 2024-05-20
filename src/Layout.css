@@ -1,33 +1,118 @@
-
-/* header Css*/
-header{
-    background-color: #CE2829;
-}
-.headerNav {
-}
-.headerNav {
-    width: 50%; /* Genişlik yarıya düşürüldü */
-    padding: 10px;
+/*header css*/
+header {
+    width: 100%; /* Header genişliğini tam sayfa yap */
+    background-color: #c13726; /* Arka plan rengini ayarla */
+    padding: 0; /* Üst ve alt boşluk ekle */
 }
 
-/* Gerekirse crumb stillerini değiştirin */
-.crumb {
-    /* İstenilen stiller */
-}
-
-.orderFormNav {
+.main-nav {
+    width: 100%;
+    max-width: 1200px; /* İçeriği ortalamak için maksimum genişlik belirle */
+    margin: 0 auto; /* Ortalamak için otomatik margin kullan */
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column; /* Elemanları dikeyde hizala */
+    align-items: center; /* Elemanları yatayda ortala */
+}
+.nav-links {
+    display: flex;
+    margin-top: 10px; /* Üst boşluk ekle */
+    box-sizing: border-box; /* Padding dahil genişlik ve yükseklik hesaplama */
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-size: 16px; /* Yazı boyutunu ayarla */
+}
+
+.nav-links span {
+    margin: 0 5px;
+}
+
+/* OrderForm CSS */
+.topColor {
+    background-color: #FAF7F2;
+    padding-bottom: 0px;
+}
+
+.orderFormSecondDiv {
+    max-width: 600px; /* İçeriğin genişliğini sınırlandır */
+    margin: auto; /* Ortalamak için */
+    text-align: left; /* Metin hizalaması */
+}
+
+.orderFormSecondDiv h2 {
+    margin-bottom: 10px;
+}
+
+/*Size and Doung section*/
+.selection-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.option-group {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.option-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.required {
+    color: red;
+}
+
+.options {
+    display: flex;
+    gap: 10px;
+}
+
+.option {
+    background-color: #FAF7F2;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
     align-items: center;
-    color: white;
-    
-}
-/*OrderForm Css*/
-.container{
-    display: flex;
     justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.orderFormSecondDiv{
+.option.selected {
+    background-color: #ffeb3b;
+}
 
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* 720px altı için */
+@media (max-width: 720px) {
+    .container {
+        width: 100%; /* Container genişliğini tam yap */
+        margin: 0;   /* Kenar boşluklarını kaldır */
+        padding: 0; /* Küçük cihazlar için padding ayarla */
+        box-shadow: none; /* Gölgeyi kaldır */
+    }
+
+    .main-nav {
+        flex-direction: column; /* Ana navigasyonu dikey hizala */
+        padding: 0 10px; /* Sol ve sağ boşlukları azalt */
+    }
+
+    .nav-links {
+        margin-top: 5px; /* Üst boşluğu azalt */
+    }
+
+    .orderFormSecondDiv {
+        max-width: 100%; /* İçeriğin genişliğini tam yap */
+    }
 }

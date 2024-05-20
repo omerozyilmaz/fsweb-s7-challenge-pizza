@@ -10,7 +10,7 @@ function App() {
     <Header/>
     <Switch>      
       <Route path="/" exact> <MainPage/> </Route>
-      <Route path="/OrderForm"> <OrderForm/> </Route>
+      <Route path="/orderForm"> <OrderForm/> </Route>
       <Route path="/OrderConfirmation"> <OrderConfirmation/></Route>
     </Switch>
     </BrowserRouter>

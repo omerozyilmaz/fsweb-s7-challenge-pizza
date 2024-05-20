@@ -5,46 +5,14 @@ export default function Header() {
     const location = useLocation();
 
     return (
-    <header>
-        <nav className="headerNav">
-            <div>
-                <a href ="/">
-                    <img src="./Assets/mile1-assets/logo.svg" alt="logo"/>
-                </a>
-                <ol>
-                    {location.pathname === "/OrderForm" && (
-                        <>
-                            <a href="/">Anasayfa</a>
-                            <span>-</span>
-                            <a href="/OrderForm">Sipariş Oluştur</a>
-                        </>
-            )}
-                </ol>
-            </div>
-        </nav>
-    </header>
+        <header>
+            <nav className='main-nav'>
+                <div className='nav-container'>
+                    <a href="/" className='headerNav'>
+                        <img src="./Assets/mile1-assets/logo.svg" alt="logo" style={{ marginTop: 30, marginBottom: 10 }} />
+                    </a>
+                </div>
+            </nav>
+        </header>
     );
 }
-
-
-/*              <nav className="orderFormNav">
-                    <a>                        
-                        <NavLink
-                        href="/" 
-                        className="orderFormNav"
-                        >
-                        Anasayfa
-                    </a>
-                    <NavItem
-                        className="orderFormNav"
-                    >
-                        <span>-</span>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href="/OrderForm"
-                        className="orderFormNav"
-                        style={{ fontWeight:"bold" }}>
-                        Sipariş Oluştur
-                        </NavLink>
-                    </NavItem>
-                </Nav> */
