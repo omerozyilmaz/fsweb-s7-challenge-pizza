@@ -121,7 +121,8 @@ select {
 .additional-material-option {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;

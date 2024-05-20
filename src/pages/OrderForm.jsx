@@ -50,7 +50,7 @@ export default function OrderForm() {
                 </div>
                 <div className="additional-material-section">
                     <label className="option-label">Ek Malzemeler</label>
-                    <div>En Fazla 10 Malzeme Seçebiliriniz. 5₺</div>
+                    <div style={{paddingTop:20}}>En Fazla 10 Malzeme Seçebiliriniz. 5₺</div>
                     <div className="additional-material-option">
                         {materials.map(material => (
                             <label key={material} className="additional-material-option">
