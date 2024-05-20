@@ -7,7 +7,7 @@ export default function PizzaPrice(props) {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div>{price.aciPizzaPrice}₺</div>
+            <div style={{fontWeight:900, fontSize:27}}>{price.aciPizzaPrice}₺</div>
              <div>
                  4.9 <span style={{ marginLeft: '10px' }}>(200)</span>
             </div>

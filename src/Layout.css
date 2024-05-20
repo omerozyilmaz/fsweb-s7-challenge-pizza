@@ -1,27 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Quattrocento:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Satisfy&display=swap');
+
 /*header css*/
 header {
-    width: 100%; /* Header genişliğini tam sayfa yap */
-    background-color: #c13726; /* Arka plan rengini ayarla */
-    padding: 0; /* Üst ve alt boşluk ekle */
+    width: 100%;
+    background-color: #c13726;
+    padding: 0;
 }
 
 .main-nav {
     width: 100%;
-    max-width: 1200px; /* İçeriği ortalamak için maksimum genişlik belirle */
-    margin: 0 auto; /* Ortalamak için otomatik margin kullan */
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    flex-direction: column; /* Elemanları dikeyde hizala */
-    align-items: center; /* Elemanları yatayda ortala */
+    flex-direction: column;
+    align-items: center;
 }
+
 .nav-links {
     display: flex;
-    margin-top: 10px; /* Üst boşluk ekle */
-    box-sizing: border-box; /* Padding dahil genişlik ve yükseklik hesaplama */
+    margin-top: 10px;
+    box-sizing: border-box;
 }
 
 .nav-links a {
     text-decoration: none;
-    font-size: 16px; /* Yazı boyutunu ayarla */
+    font-size: 16px;
 }
 
 .nav-links span {
@@ -35,16 +38,20 @@ header {
 }
 
 .orderFormSecondDiv {
-    max-width: 600px; /* İçeriğin genişliğini sınırlandır */
-    margin: auto; /* Ortalamak için */
-    text-align: left; /* Metin hizalaması */
+    max-width: 600px;
+    margin: auto;
+    text-align: left;
+    font-size: large;
 }
 
 .orderFormSecondDiv h2 {
     margin-bottom: 10px;
 }
 
-/*Size and Doung section*/
+.container {
+    font-family: "Roboto Condensed";
+}
+
 .selection-section {
     display: flex;
     justify-content: space-between;
@@ -54,12 +61,13 @@ header {
 .option-group {
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: flex-start;
 }
 
 .option-label {
     font-weight: bold;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .required {
@@ -94,25 +102,111 @@ select {
     border: 1px solid #ccc;
 }
 
-/* 720px altı için */
+/* Additional Material  CSS */
+.additional-material-section {
+    margin-top: 20px;
+}
+
+.additional-material-section p {
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.additional-material-option {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.additional-material-option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.additional-material-option input {
+    margin-right: 10px;
+}
+
+.additional-material-option input:checked + label {
+    background-color: #ffeb3b;
+}
+
+/* Order Summary CSS */
+.order-summary {
+    margin-top: 30px;
+}
+
+.order-note {
+    margin-bottom: 20px;
+}
+
+.order-note label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.order-note textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.order-total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.order-total div {
+    margin-bottom: 10px;
+}
+
+.order-total button {
+    background-color: #ffeb3b;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Responsive Design */
 @media (max-width: 720px) {
     .container {
-        width: 100%; /* Container genişliğini tam yap */
-        margin: 0;   /* Kenar boşluklarını kaldır */
-        padding: 0; /* Küçük cihazlar için padding ayarla */
-        box-shadow: none; /* Gölgeyi kaldır */
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
     }
 
     .main-nav {
-        flex-direction: column; /* Ana navigasyonu dikey hizala */
-        padding: 0 10px; /* Sol ve sağ boşlukları azalt */
+        flex-direction: column;
+        padding: 0 10px;
     }
 
     .nav-links {
-        margin-top: 5px; /* Üst boşluğu azalt */
+        margin-top: 5px;
     }
 
     .orderFormSecondDiv {
-        max-width: 100%; /* İçeriğin genişliğini tam yap */
+        max-width: 100%;
+    }
+
+    .selection-section {
+        flex-direction: column;
+    }
+
+    .additional-material-option {
+        justify-content: center;
+    }
+
+    .order-summary {
+        align-items: center;
     }
 }

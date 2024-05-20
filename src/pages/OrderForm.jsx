@@ -4,6 +4,13 @@ import PizzaPrice from "../components/PizzaPrice";
 export default function OrderForm() {
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedDough, setSelectedDough] = useState('');
+    const [additionalMaterial, setAdditionalMaterial] =useState([]);
+    const materials = ["Pepperoni", "Sosis", "Tavuk", "Soğan", "Domates", "Mısır", "Sarımsak", "Biber", "Jalapeno", "Sucuk", "Ananas", "Kabak"];
+
+    const handleMaterialChange = (material) =>{
+
+        setAdditionalMaterial(prev => prev.includes(material) ? prev.filter(i => !material): [...prev, material]);
+    };
 
     return (
         <>
@@ -16,9 +23,9 @@ export default function OrderForm() {
                         <span style={{ color: 'black' }}> - </span>
                         <a href="/OrderForm" style={{ color: 'red', fontWeight: "bold" }}>Sipariş Oluştur</a>
                     </div>
-                <h2>Position Absolute Acı Pizza</h2>
+                <div style={{fontWeight:800, paddingBottom:50, paddingTop:50, fontSize:22}}>Position Absolute Acı Pizza</div>
                 <PizzaPrice />
-                <a>Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. . Küçük bir pizzaya bazen pizzetta denir.</a>
+                <div style={{paddingBottom:30, paddingTop:30}}>Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. . Küçük bir pizzaya bazen pizzetta denir.</div>
                 </div>
                 </div>
         </div>
@@ -41,8 +48,35 @@ export default function OrderForm() {
                         </select>
                     </div>
                 </div>
-        </div>
+                <div className="additional-material-section">
+                    <label className="option-label">Ek Malzemeler</label>
+                    <div>En Fazla 10 Malzeme Seçebiliriniz. 5₺</div>
+                    <div className="additional-material-option">
+                        {materials.map(material => (
+                            <label key={material} className="additional-material-option">
+                                <input
+                                type="checkbox"
+                                value={material}
+                                checked = {additionalMaterial.includes(material)}
+                                onChange={()=> handleMaterialChange(material)}    
+                                />
+                                {material}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+                <div className="order-summary">
+                    <div className="order-note">
+                        <label>Sipariş Notu</label>
+                        <textarea placeholder="Siparişe eklemek istediğiniz bir not var mı?" />
+                    </div>
+                    <div className="order-total">
+                        <div>Seçimler: 25.00₺</div>
+                        <div>Toplam: 110.50₺</div>
+                        <button>SİPARİŞ VER</button>
+                    </div>
+                </div>
+            </div>
         </>
-
     );
 }
