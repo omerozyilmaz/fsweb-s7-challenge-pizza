@@ -1,213 +1,271 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Quattrocento:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Satisfy&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Quattrocento:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Satisfy&display=swap");
 
 /*header css*/
 header {
-    width: 100%;
-    background-color: #c13726;
-    padding: 0;
+  width: 100%;
+  background-color: #ce2829;
+  padding: 0;
 }
 
 .main-nav {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nav-links {
-    display: flex;
-    margin-top: 10px;
-    box-sizing: border-box;
+  display: flex;
+  margin-top: 10px;
+  box-sizing: border-box;
 }
 
 .nav-links a {
-    text-decoration: none;
-    font-size: 16px;
+  text-decoration: none;
+  font-size: 16px;
 }
 
 .nav-links span {
-    margin: 0 5px;
+  margin: 0 5px;
 }
 
 /* OrderForm CSS */
 .topColor {
-    background-color: #FAF7F2;
-    padding-bottom: 0px;
+  background-color: #faf7f2;
+  padding-bottom: 0px;
 }
 
 .orderFormSecondDiv {
-    max-width: 600px;
-    margin: auto;
-    text-align: left;
-    font-size: large;
+  max-width: 600px;
+  margin: auto;
+  text-align: left;
+  font-size: large;
 }
 
 .orderFormSecondDiv h2 {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .container {
-    font-family: "Roboto Condensed";
+  font-family: "Roboto Condensed";
 }
 
 .selection-section {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+  /* bunu pizza sayisinda da kullandim */
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 .option-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .option-label {
-    font-weight: bold;
-    margin-bottom: 10px;
-    margin-top: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .required {
-    color: red;
+  color: red;
 }
 
 .options {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .option {
-    background-color: #FAF7F2;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  background-color: #faf7f2;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .option.selected {
-    background-color: #ffeb3b;
+  background-color: #ffeb3b;
 }
 
 select {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+/* Pizza sayi artirma bolumu*/
+.yanyana {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 100px;
 }
 
+.yanyana button {
+  border: none;
+  background-color: #faf7f2;
+}
+
+.yanyana div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #faf7f2;
+}
+
+.buttonScale {
+  width: 50px;
+  height: 50px;
+}
+
+.yanyana button:hover {
+  background-color: #ffeb3b;
+}
 /* Additional Material  CSS */
 .additional-material-section {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .additional-material-section p {
-    margin-top: 5px;
-    margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 20px;
 }
 
 .additional-material-option {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .additional-material-option {
-    display: flex;
-    align-items: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .additional-material-option input {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .additional-material-option input:checked + label {
-    background-color: #ffeb3b;
+  background-color: #ffeb3b;
 }
 
 /* Order Summary CSS */
 .order-summary {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .order-note {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+  width: auto;
 }
 
 .order-note label {
-    display: block;
-    margin-bottom: 5px;
+  display: block;
+  margin-bottom: 20px;
+  width: auto;
 }
 
 .order-note textarea {
-    width: 100%;
-    height: 100px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+  width: 100%;
+  height: 30px;
+  border: 1px solid #ccc;
+  padding-top: 12px;
+  background-color: #faf7f2;
 }
 
 .order-total {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #faf7f2;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
 }
 
 .order-total div {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
-
+.order-total a {
+  margin-bottom: 10px;
+}
+.ft-bold {
+  font-weight: bold;
+}
+.colorA {
+  color: red;
+}
 .order-total button {
-    background-color: #ffeb3b;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
+  background-color: #fdc913;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
 }
 
 /* Responsive Design */
-@media (max-width: 720px) {
-    .container {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        box-shadow: none;
-    }
+@media (max-width: 650px) {
+  .container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
 
-    .main-nav {
-        flex-direction: column;
-        padding: 0 10px;
-    }
+  .main-nav {
+    flex-direction: column;
+    padding: 0 10px;
+  }
 
-    .nav-links {
-        margin-top: 5px;
-    }
+  .nav-links {
+    margin-top: 5px;
+  }
 
-    .orderFormSecondDiv {
-        max-width: 100%;
-    }
+  .orderFormSecondDiv {
+    max-width: 100%;
+  }
 
-    .selection-section {
-        flex-direction: column;
-    }
+  .selection-section {
+    flex-direction: column;
+  }
 
-    .additional-material-option {
-        justify-content: center;
-    }
+  .additional-material-option {
+    justify-content: center;
+  }
 
-    .order-summary {
-        align-items: center;
-    }
+  .order-summary {
+    align-items: center;
+  }
+  #formBanner {
+    width: 100%;
+  }
+  .order-note {
+    margin-bottom: 20px;
+    width: auto;
+  }
+
+  .order-note label {
+    display: block;
+    margin-bottom: 5px;
+    width: auto;
+  }
 }
