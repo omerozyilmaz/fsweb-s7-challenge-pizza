@@ -171,13 +171,14 @@ export default function OrderForm() {
           </div>
           <div className="additional-material-option">
             {materials.map((material) => (
-              <label key={material} className="additional-material-option">
+              <label key={material} className="checkbox ">
                 <input
                   type="checkbox"
                   value={material}
                   checked={additionalMaterial.includes(material)}
                   onChange={() => handleMaterialChange(material)}
                 />
+                <span className="checkmark"></span>
                 {material}
               </label>
             ))}
@@ -217,9 +218,15 @@ export default function OrderForm() {
               </button>
             </div>
             <div className="order-total option-group">
-              <div>Sipariş Toplamı</div>
-              <a>Seçimler: {price.additionalMaterialsPrice}₺</a>
-              <a className="colorA">Toplam: {price.totalPrice}₺</a>
+              <div className="div-bold">Sipariş Toplamı</div>
+              <div className="inline-items">
+                <a>Seçimler: </a>
+                <a> {price.additionalMaterialsPrice}₺</a>
+              </div>
+              <div className="inline-items">
+                <a className="colorA">Toplam:</a>
+                <a>{price.totalPrice}₺</a>
+              </div>
               <button
                 disabled={additionalMaterial.length < 4}
                 onClick={handleSubmit}

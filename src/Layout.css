@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Quattrocento:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Satisfy&display=swap");
 
-/*header css*/
+/*Bold yapmak icin*/
+.div-bold {
+  font-weight: bold;
+}
+/* Header CSS */
 header {
   width: 100%;
   background-color: #ce2829;
@@ -44,16 +48,11 @@ header {
   font-size: large;
 }
 
-.orderFormSecondDiv h2 {
-  margin-bottom: 10px;
-}
-
 .container {
   font-family: "Roboto Condensed";
 }
 
 .selection-section {
-  /* bunu pizza sayisinda da kullandim */
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
@@ -102,7 +101,8 @@ select {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
-/* Pizza sayi artirma bolumu*/
+
+/* Pizza sayi artirma bolumu */
 .yanyana {
   display: flex;
   align-items: center;
@@ -131,30 +131,24 @@ select {
 .yanyana button:hover {
   background-color: #ffeb3b;
 }
-/* Additional Material  CSS */
+
+/* Additional Material CSS */
 .additional-material-section {
   margin-top: 20px;
-}
-
-.additional-material-section p {
-  margin-top: 5px;
-  margin-bottom: 20px;
 }
 
 .additional-material-option {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  align-items: center;
 }
 
-.additional-material-option {
+.additional-material-option label {
+  padding-top: 10px;
+  transition: background-color 0.3s;
   display: flex;
   align-items: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .additional-material-option input {
@@ -189,34 +183,85 @@ select {
   background-color: #faf7f2;
 }
 
+/* Checkbox */
+.checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding: 35px;
+  user-select: none;
+}
+
+.checkbox .checkmark {
+  position: relative;
+  height: 40px;
+  width: 40px;
+  background-color: #faf7f2;
+  margin-right: 10px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.checkbox input[type="checkbox"]:checked + .checkmark {
+  background-color: #ffeb3b;
+  border-color: #ffeb3b;
+}
+
+.checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 15px;
+  top: 12px;
+  width: 5px;
+  height: 10px;
+  border: solid #333;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox input[type="checkbox"]:checked + .checkmark:after {
+  display: block;
+}
+
+/* Order total final area */
 .order-total {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background-color: #faf7f2;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 40px;
   margin-top: 20px;
+  width: 270px;
 }
 
 .order-total div {
   margin-bottom: 10px;
-  font-weight: bold;
 }
-.order-total a {
-  margin-bottom: 10px;
+
+.order-total .inline-items {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
+
 .ft-bold {
   font-weight: bold;
 }
+
 .colorA {
   color: red;
 }
+
 .order-total button {
   background-color: #fdc913;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
   width: 100%;
@@ -255,9 +300,11 @@ select {
   .order-summary {
     align-items: center;
   }
+
   #formBanner {
     width: 100%;
   }
+
   .order-note {
     margin-bottom: 20px;
     width: auto;
