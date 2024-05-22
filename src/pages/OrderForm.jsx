@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import SizeSelector from "../components/SizeSelector";
+import DoughSelector from "../components/DoughSelector";
+import AdditionalMaterialsSelector from "../components/AdditionalMaterialsSelector";
+import OrderSummary from "../components/OrderSummary";
+import { useHistory } from "react-router-dom";
 
 export default function OrderForm() {
   const [selectedSize, setSelectedSize] = useState("L");
@@ -12,6 +17,8 @@ export default function OrderForm() {
     additionalMaterialsPrice: 0,
   });
   const [errorMaterial, setErrorMaterial] = useState(false);
+  const [errorDough, setErrorDough] = useState(false);
+  let history = useHistory();
 
   const materials = [
     "Pepperoni",
@@ -54,7 +61,8 @@ export default function OrderForm() {
       additionalMaterialsPrice,
     }));
     setErrorMaterial(additionalMaterial.length < 4);
-  }, [additionalMaterial, pizzaCount, price.aciPizzaPrice]);
+    setErrorDough(selectedDough === "");
+  }, [additionalMaterial, pizzaCount, price.aciPizzaPrice, selectedDough]);
 
   const handleSubmit = async () => {
     const data = {
@@ -66,8 +74,16 @@ export default function OrderForm() {
     };
 
     try {
-      const response = await axios.post("https://reqres.in/api/pizza", data);
-      console.log("Order Summary:", response.data);
+      const response = await axios
+        .post("https://reqres.in/api/pizza", data)
+        .then((res) => {
+          console.log(res.data);
+          history.push({
+            //BURAYI DUZENLE
+            pathname: "/OrderConfirmation",
+            state: { dataId: res.data.id, data },
+          });
+        });
     } catch (error) {
       console.error("There was an error submitting the order: ", error);
     }
@@ -110,7 +126,7 @@ export default function OrderForm() {
                 4.9 <span style={{ marginLeft: "10px" }}>(200)</span>
               </div>
             </div>
-            <div style={{ paddingBottom: 30, paddingTop: 30 }}>
+            <div style={{ paddingBottom: 30, paddingTop: 30, fontWeight: 300 }}>
               Frontent Dev olarak hala position:absolute kullanıyorsan bu çok
               acı pizza tam sana göre. Pizza, domates, peynir ve genellikle
               çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak
@@ -124,118 +140,30 @@ export default function OrderForm() {
       </div>
       <div className="container  orderFormSecondDiv">
         <div className="selection-section">
-          <div className="option-group">
-            <label className="option-label">
-              Boyut Seç <span className="required">*</span>
-            </label>
-            <div className="options">
-              <button
-                className={`option ${selectedSize === "S" ? "selected" : ""}`}
-                onClick={() => setSelectedSize("S")}
-              >
-                S
-              </button>
-              <button
-                className={`option ${selectedSize === "M" ? "selected" : ""}`}
-                onClick={() => setSelectedSize("M")}
-              >
-                M
-              </button>
-              <button
-                className={`option ${selectedSize === "L" ? "selected" : ""}`}
-                onClick={() => setSelectedSize("L")}
-              >
-                L
-              </button>
-            </div>
-          </div>
-          <div className="option-group">
-            <label className="option-label">
-              Hamur Seç <span className="required">*</span>
-            </label>
-            <select
-              style={{ backgroundColor: " #FAF7F2" }}
-              value={selectedDough}
-              onChange={(e) => setSelectedDough(e.target.value)}
-            >
-              <option value="">--Hamur Kalınlığı Seç--</option>
-              <option value="ince">İnce</option>
-              <option value="kalin">Kalın</option>
-            </select>
-          </div>
+          <SizeSelector
+            selectedSize={selectedSize}
+            setSelectedSize={setSelectedSize}
+          />
+          <DoughSelector
+            selectedDough={selectedDough}
+            setSelectedDough={setSelectedDough}
+            errorDough={errorDough}
+          />
         </div>
-        <div className="additional-material-section">
-          <label className="option-label">Ek Malzemeler</label>
-          <div style={{ paddingTop: 20 }}>
-            En Fazla 10 Malzeme Seçebiliriniz. 5₺
-          </div>
-          <div className="additional-material-option">
-            {materials.map((material) => (
-              <label key={material} className="checkbox ">
-                <input
-                  type="checkbox"
-                  value={material}
-                  checked={additionalMaterial.includes(material)}
-                  onChange={() => handleMaterialChange(material)}
-                />
-                <span className="checkmark"></span>
-                {material}
-              </label>
-            ))}
-          </div>
-          {errorMaterial && (
-            <div style={{ color: "red" }}>
-              Lütfen en az 4 tane ek malzeme seçiniz.
-            </div>
-          )}
-        </div>
-        <div className="order-summary ">
-          <div className="selection-section">
-            <div className="order-note yanyana">
-              <label className="option-label ">Isim Soyisim</label>
-              <textarea placeholder="Isim Soyisim giriniz." />
-              <label className="option-label">Sipariş Notu</label>
-              <textarea placeholder="Siparişe eklemek istediğiniz bir not var mı?" />
-            </div>
-          </div>
-          <hr />
-          <div className="selection-section">
-            <div className="yanyana">
-              <button
-                className="yellow buttonScale"
-                name="decrease"
-                onClick={handleCountChange}
-              >
-                -
-              </button>
-              <div className="buttonScale center">{pizzaCount}</div>
-              <button
-                className="yellow buttonScale"
-                name="increase"
-                onClick={handleCountChange}
-              >
-                +
-              </button>
-            </div>
-            <div className="order-total option-group">
-              <div className="div-bold">Sipariş Toplamı</div>
-              <div className="inline-items">
-                <a>Seçimler: </a>
-                <a> {price.additionalMaterialsPrice}₺</a>
-              </div>
-              <div className="inline-items">
-                <a className="colorA">Toplam:</a>
-                <a>{price.totalPrice}₺</a>
-              </div>
-              <button
-                disabled={additionalMaterial.length < 4}
-                onClick={handleSubmit}
-              >
-                SİPARİŞ VER
-              </button>
-            </div>
-          </div>
-        </div>
+        <AdditionalMaterialsSelector
+          materials={materials}
+          additionalMaterial={additionalMaterial}
+          handleMaterialChange={handleMaterialChange}
+          errorMaterial={errorMaterial}
+        />
+        <OrderSummary
+          pizzaCount={pizzaCount}
+          handleCountChange={handleCountChange}
+          price={price}
+          handleSubmit={handleSubmit}
+          additionalMaterial={additionalMaterial}
+          disabled={errorMaterial || errorDough}
+        />
       </div>
     </>
   );
