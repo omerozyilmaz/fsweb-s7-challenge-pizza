@@ -6,7 +6,7 @@ import AdditionalMaterialsSelector from "../components/AdditionalMaterialsSelect
 import OrderSummary from "../components/OrderSummary";
 import { useHistory } from "react-router-dom";
 
-export default function OrderForm() {
+export default function OrderForm(props) {
   const [selectedSize, setSelectedSize] = useState("L");
   const [selectedDough, setSelectedDough] = useState("");
   const [additionalMaterial, setAdditionalMaterial] = useState([]);
@@ -74,16 +74,17 @@ export default function OrderForm() {
     };
 
     try {
-      const response = await axios
-        .post("https://reqres.in/api/pizza", data)
-        .then((res) => {
-          console.log(res.data);
-          history.push({
-            //BURAYI DUZENLE
-            pathname: "/OrderConfirmation",
-            state: { dataId: res.data.id, data },
-          });
-        });
+      const response = await axios.post("https://reqres.in/api/pizza", data);
+      console.log("Order Summary:", response.data);
+      history.push({
+        pathname: "/OrderConfirmation",
+        state: {
+          id: response.data.id,
+          createdAt: response.data.createdAt,
+          form: data,
+          fiyat: price.totalPrice,
+        },
+      });
     } catch (error) {
       console.error("There was an error submitting the order: ", error);
     }
@@ -138,7 +139,7 @@ export default function OrderForm() {
           </div>
         </div>
       </div>
-      <div className="container  orderFormSecondDiv">
+      <div className="container orderFormSecondDiv">
         <div className="selection-section">
           <SizeSelector
             selectedSize={selectedSize}

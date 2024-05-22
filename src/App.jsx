@@ -10,15 +10,12 @@ function App() {
       <Header />
       <Switch>
         <Route path="/" exact>
-          {" "}
-          <MainPage />{" "}
+          <MainPage />
         </Route>
         <Route path="/orderForm">
-          {" "}
-          <OrderForm />{" "}
+          <OrderForm />
         </Route>
         <Route path="/OrderConfirmation">
-          {" "}
           <OrderConfirmation />
         </Route>
       </Switch>
