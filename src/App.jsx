@@ -15,7 +15,7 @@ function App() {
         <Route path="/orderForm">
           <OrderForm />
         </Route>
-        <Route path="/OrderConfirmation">
+        <Route path="/orderConfirmation/:id/:createdAt/:selectedDough/:selectedSize/:additionalMaterial/:pizzaCount/:totalPrice">
           <OrderConfirmation />
         </Route>
       </Switch>

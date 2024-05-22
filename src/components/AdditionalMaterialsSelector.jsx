@@ -11,7 +11,7 @@ function AdditionalMaterialsSelector(props) {
       </div>
       <div className="additional-material-option">
         {materials.map((material) => (
-          <label key={material} className="checkbox">
+          <label key={material} className="checkbox" tabIndex="0">
             <input
               type="checkbox"
               value={material}

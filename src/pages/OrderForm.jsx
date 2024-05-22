@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SizeSelector from "../components/SizeSelector";
 import DoughSelector from "../components/DoughSelector";
@@ -6,7 +6,7 @@ import AdditionalMaterialsSelector from "../components/AdditionalMaterialsSelect
 import OrderSummary from "../components/OrderSummary";
 import { useHistory } from "react-router-dom";
 
-export default function OrderForm(props) {
+export default function OrderForm() {
   const [selectedSize, setSelectedSize] = useState("L");
   const [selectedDough, setSelectedDough] = useState("");
   const [additionalMaterial, setAdditionalMaterial] = useState([]);
@@ -76,15 +76,13 @@ export default function OrderForm(props) {
     try {
       const response = await axios.post("https://reqres.in/api/pizza", data);
       console.log("Order Summary:", response.data);
-      history.push({
-        pathname: "/OrderConfirmation",
-        state: {
-          id: response.data.id,
-          createdAt: response.data.createdAt,
-          form: data,
-          fiyat: price.totalPrice,
-        },
-      });
+      history.push(
+        `/orderConfirmation/${response.data.id}/${
+          response.data.createdAt
+        }/${selectedDough}/${selectedSize}/${additionalMaterial.join(
+          ","
+        )}/${pizzaCount}/${price.totalPrice}`
+      );
     } catch (error) {
       console.error("There was an error submitting the order: ", error);
     }
@@ -105,7 +103,7 @@ export default function OrderForm(props) {
                 Anasayfa
               </a>
               <span style={{ color: "black" }}> - </span>
-              <a href="/OrderForm" style={{ color: "red", fontWeight: "bold" }}>
+              <a href="/orderForm" style={{ color: "red", fontWeight: "bold" }}>
                 Sipariş Oluştur
               </a>
             </div>
