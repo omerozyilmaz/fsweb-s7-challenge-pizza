@@ -3,6 +3,11 @@ import React from "react";
 function AdditionalMaterialsSelector(props) {
   const { materials, additionalMaterial, handleMaterialChange, errorMaterial } =
     props;
+  const handleKeyDown = (event, material) => {
+    if (event.key === "Enter") {
+      handleMaterialChange(material);
+    }
+  };
   return (
     <div className="additional-material-section">
       <label className="option-label">Ek Malzemeler</label>
@@ -11,7 +16,12 @@ function AdditionalMaterialsSelector(props) {
       </div>
       <div className="additional-material-option">
         {materials.map((material) => (
-          <label key={material} className="checkbox" tabIndex="0">
+          <label
+            key={material}
+            className="checkbox"
+            tabIndex="0"
+            onKeyDown={(event) => handleKeyDown(event, material)}
+          >
             <input
               type="checkbox"
               value={material}
