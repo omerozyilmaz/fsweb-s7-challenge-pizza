@@ -84,7 +84,7 @@ export default function OrderForm() {
         )}/${pizzaCount}/${price.totalPrice}`
       );
     } catch (error) {
-      console.error("There was an error submitting the order: ", error);
+      console.error("There was an error submitting the order:  ", error);
     }
   };
 
