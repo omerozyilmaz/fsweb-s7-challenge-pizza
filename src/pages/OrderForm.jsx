@@ -16,9 +16,11 @@ export default function OrderForm() {
     totalPrice: 85.5,
     additionalMaterialsPrice: 0,
   });
-  const [errorMaterial, setErrorMaterial] = useState(false);
-  const [errorDough, setErrorDough] = useState(false);
-  let history = useHistory();
+  const [errors, setErrors] = useState({
+    material: true,
+    dough: true,
+  });
+  const history = useHistory();
 
   const materials = [
     "Pepperoni",
@@ -51,20 +53,32 @@ export default function OrderForm() {
     );
   };
 
-  useEffect(() => {
+  const calculatePrice = () => {
     const additionalMaterialsPrice = additionalMaterial.length * 5 * pizzaCount;
     const totalPrice =
       (price.aciPizzaPrice + additionalMaterialsPrice) * pizzaCount;
-    setPrice((firstPrice) => ({
-      ...firstPrice,
+
+    return {
+      ...price,
       totalPrice,
       additionalMaterialsPrice,
-    }));
-    setErrorMaterial(additionalMaterial.length < 4);
-    setErrorDough(selectedDough === "");
-  }, [additionalMaterial, pizzaCount, price.aciPizzaPrice, selectedDough]);
+    };
+  };
+
+  useEffect(() => {
+    setPrice(calculatePrice());
+
+    setErrors({
+      material: additionalMaterial.length < 4,
+      dough: selectedDough === "",
+    });
+  }, [additionalMaterial, pizzaCount, selectedDough]);
 
   const handleSubmit = async () => {
+    if (errors.material || errors.dough) {
+      return;
+    }
+
     const data = {
       selectedDough,
       selectedSize,
@@ -76,6 +90,7 @@ export default function OrderForm() {
     try {
       const response = await axios.post("https://reqres.in/api/pizza", data);
       console.log("Order Summary:", response.data);
+
       history.push(
         `/orderConfirmation/${response.data.id}/${
           response.data.createdAt
@@ -84,7 +99,7 @@ export default function OrderForm() {
         )}/${pizzaCount}/${price.totalPrice}`
       );
     } catch (error) {
-      console.error("There was an error submitting the order:  ", error);
+      console.error("Sipariş gönderilirken bir hata oluştu: ", error);
     }
   };
 
@@ -92,12 +107,13 @@ export default function OrderForm() {
     <>
       <div className="container topColor">
         <div className="orderFormSecondDiv">
-          <div className="">
+          <div className="pizza-details">
             <img
               id="formBanner"
               src="src/assets/mile2-aseets/pictures/form-banner.png"
               alt="Form Banner"
             />
+
             <div className="nav-links">
               <a href="/" style={{ color: "black" }}>
                 Anasayfa
@@ -107,25 +123,17 @@ export default function OrderForm() {
                 Sipariş Oluştur
               </a>
             </div>
-            <div
-              style={{
-                fontWeight: 800,
-                paddingBottom: 50,
-                paddingTop: 50,
-                fontSize: 22,
-              }}
-            >
-              Position Absolute Acı Pizza
-            </div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <div style={{ fontWeight: 900, fontSize: 27 }}>
-                {price.aciPizzaPrice}₺
-              </div>
-              <div>
-                4.9 <span style={{ marginLeft: "10px" }}>(200)</span>
+
+            <div className="pizza-title">Position Absolute Acı Pizza</div>
+
+            <div className="pizza-price-rating">
+              <div className="pizza-price">{price.aciPizzaPrice}₺</div>
+              <div className="pizza-rating">
+                4.9 <span>(200)</span>
               </div>
             </div>
-            <div style={{ paddingBottom: 30, paddingTop: 30, fontWeight: 300 }}>
+
+            <div className="pizza-description">
               Frontent Dev olarak hala position:absolute kullanıyorsan bu çok
               acı pizza tam sana göre. Pizza, domates, peynir ve genellikle
               çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak
@@ -137,6 +145,7 @@ export default function OrderForm() {
           </div>
         </div>
       </div>
+
       <div className="container orderFormSecondDiv">
         <div className="selection-section">
           <SizeSelector
@@ -146,22 +155,24 @@ export default function OrderForm() {
           <DoughSelector
             selectedDough={selectedDough}
             setSelectedDough={setSelectedDough}
-            errorDough={errorDough}
+            errorDough={errors.dough}
           />
         </div>
+
         <AdditionalMaterialsSelector
           materials={materials}
           additionalMaterial={additionalMaterial}
           handleMaterialChange={handleMaterialChange}
-          errorMaterial={errorMaterial}
+          errorMaterial={errors.material}
         />
+
         <OrderSummary
           pizzaCount={pizzaCount}
           handleCountChange={handleCountChange}
           price={price}
           handleSubmit={handleSubmit}
           additionalMaterial={additionalMaterial}
-          disabled={errorMaterial || errorDough}
+          disabled={errors.material || errors.dough}
         />
       </div>
     </>
